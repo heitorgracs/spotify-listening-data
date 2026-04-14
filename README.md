@@ -22,11 +22,8 @@ O resultado é consumido diretamente pelo Power BI para geração do dashboard.
 ```
 spotify-listening-data/
 ├── data/
-│   ├── raw/
-│   │   └── Spotify/          # JSONs exportados do Spotify
-│   ├── clean/
-│   │   └── Spotify/          # Parquet files processados
-│   └── backup/
+│   ├── raw/                  # JSONs exportados do Spotify          
+│   ├── clean/                # Parquet files processados
 ├── pbi_backgrounds/          # Assets visuais do Power BI
 ├── scripts/
 │   ├── constants/
@@ -53,7 +50,7 @@ etl_pipeline
 ```
 
 ### Transform Task (`transform.py`)
-- Lê e concatena todos os arquivos `.json` do diretório `data/raw/Spotify/`
+- Lê e concatena todos os arquivos `.json` do diretório `data/raw`
 - Renomeia colunas para nomenclatura padronizada
 - Remove colunas irrelevantes (`spotify_episode_uri`, `ip_addr`, `reason_start`)
 - Aplica conversão de tipos: `datetime`, `boolean`, `int`, `float`
@@ -153,7 +150,7 @@ A UI do Prefect estará disponível em `http://localhost:4200`, onde é possíve
 1. Acesse [spotify.com/account/privacy](https://www.spotify.com/account/privacy/)
 2. Role até **"Download your data"** e solicite o **Extended Streaming History**
 3. O Spotify enviará os arquivos por e-mail em até 30 dias
-4. Extraia os arquivos `.json` para `data/raw/Spotify/`
+4. Extraia os arquivos `.json` para `data/raw`
 5. Execute o pipeline com `python main.py`
 
 ---

@@ -33,7 +33,7 @@ def dropna_rows(df: pd.DataFrame, subset: list) -> pd.DataFrame:
     # Drop rows with NA values in the specified subset
     df = df[df[subset].notna().all(axis=1)]
     # Drop rows with empty strings (after stripping) in the specified subset
-    df = df[df[subset].astype(str).map(str.strip).ne('').all(axis=1)]
+    df = df[df[subset].astype(str).apply(lambda col: col.str.strip() != '').all(axis=1)]
     
     return df.reset_index(drop=True)
     
